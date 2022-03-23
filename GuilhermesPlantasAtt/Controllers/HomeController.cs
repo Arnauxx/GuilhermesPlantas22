@@ -17,8 +17,8 @@ namespace GuilhermesPlantasAtt.Controllers
 
         public IActionResult About()
         {
-            ViewData["Message"] = "Your application description page.";
-
+            ViewData["Message"] = "As melhores plantas ornamentais da região";
+            ViewData["Nome"] = "Arnaux Stevan";
             return View();
         }
 
