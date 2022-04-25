@@ -1,6 +1,6 @@
 using System;
 
-namespace GuilhermesPlantasAtt.Models
+namespace GuilhermesPlantasAtt.Models.ViewModels
 {
     public class ErrorViewModel
     {
