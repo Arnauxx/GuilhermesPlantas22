@@ -3,14 +3,16 @@ using System;
 using GuilhermesPlantasAtt.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace GuilhermesPlantasAtt.Migrations
 {
     [DbContext(typeof(GuilhermesPlantasAttContext))]
-    partial class GuilhermesPlantasAttContextModelSnapshot : ModelSnapshot
+    [Migration("20220426170714_OtherEntities")]
+    partial class OtherEntities
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
