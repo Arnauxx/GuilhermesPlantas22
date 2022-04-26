@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using GuilhermesPlantasAtt.Models;
 using GuilhermesPlantasAtt.Data;
+using GuilhermesPlantasAtt.Services;
 
 namespace GuilhermesPlantasAtt
 {
@@ -42,6 +43,8 @@ namespace GuilhermesPlantasAtt
                     builder.MigrationsAssembly("GuilhermesPlantasAtt")));
 
             services.AddScoped<SeedingService>();
+            services.AddScoped<SellerService>();
+
 
         }
 
