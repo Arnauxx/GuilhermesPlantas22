@@ -3,14 +3,16 @@ using System;
 using GuilhermesPlantasAtt.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace GuilhermesPlantasAtt.Migrations
 {
     [DbContext(typeof(GuilhermesPlantasAttContext))]
-    partial class GuilhermesPlantasAttContextModelSnapshot : ModelSnapshot
+    [Migration("20220426170714_OtherEntities")]
+    partial class OtherEntities
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -58,7 +60,7 @@ namespace GuilhermesPlantasAtt.Migrations
 
                     b.Property<DateTime>("BirthDate");
 
-                    b.Property<int>("DepartmentId");
+                    b.Property<int?>("DepartmentId");
 
                     b.Property<string>("Email");
 
@@ -82,8 +84,7 @@ namespace GuilhermesPlantasAtt.Migrations
                 {
                     b.HasOne("GuilhermesPlantasAtt.Models.Department", "Department")
                         .WithMany("Sellers")
-                        .HasForeignKey("DepartmentId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("DepartmentId");
                 });
 #pragma warning restore 612, 618
         }
