@@ -7,6 +7,7 @@ using GuilhermesPlantasAtt.Services;
 using GuilhermesPlantasAtt.Models;
 using GuilhermesPlantasAtt.Models.ViewModels;
 using GuilhermesPlantasAtt.Services.Exceptions;
+using System.Diagnostics;
 
 namespace GuilhermesPlantasAtt.Controllers
 {
@@ -45,13 +46,13 @@ namespace GuilhermesPlantasAtt.Controllers
         {
             if (id == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Error), new { message = "Id not provided" });
             }
 
             var obj = _sellerService.FindById(id.Value);
             if (obj == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Error), new { message = "Id not found" });
             }
 
             return View(obj);
@@ -68,13 +69,13 @@ namespace GuilhermesPlantasAtt.Controllers
         {
             if (id == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Error), new { message = "Id not provided" });
             }
 
             var obj = _sellerService.FindById(id.Value);
             if (obj == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Error), new { message = "Id not found" });
             }
 
             return View(obj);
@@ -84,13 +85,13 @@ namespace GuilhermesPlantasAtt.Controllers
         {
             if (id == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Error), new { message = "Id not provided" });
             }
 
             var obj = _sellerService.FindById(id.Value);
             if (obj == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Error), new { message = "Id not found" });
             }
 
             List<Department> departments = _departmentService.FindAll();
@@ -108,22 +109,30 @@ namespace GuilhermesPlantasAtt.Controllers
         {
             if (id != seller.Id)
             {
-                return BadRequest(0);
+                return RedirectToAction(nameof(Error), new { message = "Id mismatch" });
             }
             try
             {
                 _sellerService.Update(seller);
                 return RedirectToAction(nameof(Index));
             }
-            catch (NotFoundExceptions)
+            catch (ApplicationException e)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Error), new { message = e.Message });
             }
-            catch (DbConcurrencyExcepetion)
-            {
-                return BadRequest();
-            }
-
         }
+
+        public IActionResult Error(string message)
+        {
+            var viewModel = new ErrorViewModel
+            {
+                Message = message,
+                RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier
+            };
+
+            return View(viewModel);
+        }
+
+
     }
 }
