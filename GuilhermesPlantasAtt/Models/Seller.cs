@@ -31,7 +31,7 @@ namespace GuilhermesPlantasAtt.Models
         public Department Department { get; set; }
         [Display(Name = "ID do Departamento")]
         public int DepartmentId { get; set; }
-        public ICollection<SalesRecord> Sales = new List<SalesRecord>();
+        public ICollection<SalesRecord> Sales { get; set; } = new List<SalesRecord>();
 
         public Seller()
         {
